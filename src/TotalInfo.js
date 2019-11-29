@@ -3,6 +3,8 @@ import {Row,Col,Table,Card,Button, Image} from 'react-bootstrap'
 import BodyInfo from "./BodyInfo"
 import BodyContent from "./BodyContent"
 import mall from "./assets/mall.jpg"
+import playground from "./assets/playground.jpg"
+import station from "./assets/station.jpg"
 import {Link, } from 'react-router-dom'
 import Detail from "./Detail"
 import {Route, Switch} from 'react-router-dom'
@@ -11,7 +13,7 @@ const TotalInfo = ({users}) =>{
   return(
     <div>
       <Link to ="/AddArea"><p style={{color:"#FF8C00",marginTop:"2%"}}>+新增一筆場域資料</p></Link>
-      <div style={{marginTop:"7.5%"}}>
+      <div style={{marginTop:"2%"}}>
                   <Row>                   
                     {
                      <BigButt datas = {users}></BigButt>
@@ -28,11 +30,26 @@ const BigButt=({datas = []}) =>{
   return(
     
     datas.map( (data) =>
+    
     <Col xs='12' sm='4' md ='4'>
+      <p style={{color:"white",marginBottom:"-4%",marginLeft:"39%",marginTop:"5%"}}>{data.name}</p>
       <Link to ={{pathname:path+data.id}}>
-        <Image src={mall} style={{marginLeft:"10%",height:"250px",width:"250px"}} roundedCircle thumbnail/>
+        <Image src={showImage(data.image_path)} style={{marginTop:"7.5%",marginLeft:"10%",height:"250px",width:"250px"}} roundedCircle thumbnail/>
       </Link>
-    </Col>)
+    </Col>
+    )
   )
+  
 }
+const showImage =(status)=>{
+  if(status==="mall"){
+    return mall;
+  }
+  else if(status==="playground"){
+    return playground;
+  }
+  else if(status==="station"){
+    return station;
+  }
+};
 export default TotalInfo;

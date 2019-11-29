@@ -3,11 +3,12 @@ import React,{useState, useEffect} from 'react';
 import mall from "./assets/mall.jpg"
 import station from "./assets/station.jpg"
 import playground from "./assets/playground.jpg"
-
+import {Link, useParams} from 'react-router-dom'
+import creatHistory from 'history/createBrowserHistory' 
 const AddArea=()=>{
   const [name,setName] = useState();
   const [image_path,setImagePath] = useState();
-
+  const history = creatHistory();
   const Upload = (e) => {
     e.preventDefault();
     const data = {"name":name,"image_path":image_path};
@@ -20,20 +21,21 @@ const AddArea=()=>{
       }, 
       body: JSON.stringify(data),
     });
+    history.goBack();
   }
   
   return(
     <Container>
       <Table responsive striped bordered hover 
               size="sm" variant="dark" borderless  
-              style={{color:"white",marginTop:"7.5%",marginLeft:"5  %",width:"40rem"}}>
+              style={{color:"white",marginTop:"7.5%",marginLeft:"7.5%",width:"40rem"}}>
 
         <thead>
           <tr>
-            <td>
+            {/* <td>
               {name}
               {image_path}
-            </td>
+            </td> */}
             <td colSpan="3" align="center">
 
               <InputGroup size="sm" className="mb-3" style={{width:"300px"}}>
@@ -91,7 +93,7 @@ const AddArea=()=>{
           </tr>
         
           <td colSpan="3" align="center">
-              <Button style={{color:"white",background:"#00AAAA"}} onClick={Upload}>submit</Button>
+              <Button style={{color:"white",background:"#00AAAA"}} onClick= {Upload}>submit</Button>
           </td>
         </thead>
       </Table>

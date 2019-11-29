@@ -8,7 +8,7 @@ import AddFacil from './AddFacil'
 const Body =({users}) =>{
     const [data,setData] = useState();
     useEffect( ()=> { async function fetchData(){
-        let url = 'http://192.168.0.2:5000/api/users';
+        let url = 'http://192.168.0.3:5000/api/users';
         let users = [];
         await fetch(url,{mode: 'cors'})
             .then(res => res.json())
@@ -29,7 +29,7 @@ const Body =({users}) =>{
                         <Route path='/Info' component={() => <TotalInfo users={data} />} />
                         <Route path='/Detail/:id' component={Detail}/>
                         <Route path='/AddArea' component={AddArea}/>
-                        <Route path='/AddFacil' component={AddFacil}/>
+                        <Route path='/AddFacil/:uid' component={AddFacil}/>
                     </Row>
                 </Container>
             {/* </Switch> */}
