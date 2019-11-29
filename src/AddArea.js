@@ -3,14 +3,14 @@ import React,{useState, useEffect} from 'react';
 import mall from "./assets/mall.jpg"
 import station from "./assets/station.jpg"
 import playground from "./assets/playground.jpg"
+
 const AddArea=()=>{
   const [name,setName] = useState();
   const [image_path,setImagePath] = useState();
+
   const Upload = (e) => {
     e.preventDefault();
-    console.log("Upload...");
     const data = {"name":name,"image_path":image_path};
-    console.log(data);
     fetch('http://192.168.0.3:5000/api/users', {
       method: 'POST',
       mode:'cors',
@@ -21,6 +21,7 @@ const AddArea=()=>{
       body: JSON.stringify(data),
     });
   }
+  
   return(
     <Container>
       <Table responsive striped bordered hover 
