@@ -11,7 +11,7 @@ const Detail = ({users=[]}) =>{
   let {id} = useParams();
   const [user,setUser] = useState();
   const [areas,setAreas] = useState([]);
-  const [vid,setVid] = useState('1');
+  const [vid,setVid] = useState(id);
   useEffect( ()=> { async function fetchData(){
     let url = 'http://192.168.0.3:5000/api/users/'+id.toString();
     let temp;
@@ -23,20 +23,23 @@ const Detail = ({users=[]}) =>{
         setAreas(temp.areas);
         };
       fetchData();
+      
     } ,[]);  
-    
   return(
         <Container>
           {/* <h1 style={{color:"white", marginTop:"1%",marginLeft:"45%"}}>結帳台1</h1> */}
-            <Vid style={{marginTop:"5%"}} Vid={vid}/>
-            <InfoTable setter={setVid}  users = {user} areas={areas}/>
-        </Container>
+          {user ? 
+            <Vid style={{marginTop:"5%"}} Vid={user&&user.areas[0].video_id}/>
+            : <h1 style={{color:"white", marginLeft:"10%",marginTop:"5%"}}>賭你看不到我打什麼這麼長一段時間那麼短你怎麼可能看得完...</h1>
+                  } 
+          <InfoTable setter={setVid}  users = {user} areas={areas}/>
+       </Container>
     )
 }
 
 const Vid =({Vid}) =>{
-  var url = "http://192.168.0.3:5000/api/video/1";
-  console.log(url);
+  var url = "http://192.168.0.3:5000/api/video/"+Vid;
+  // console.log(url);
     return(
             <div className="embed-responsive embed-responsive-16by9" style={{marginTop:"1%",marginLeft:"25%",width:"600px",height:"350px"}}>
                 <iframe title="Embeds Page" className="embed-responsive-item" src={url}
