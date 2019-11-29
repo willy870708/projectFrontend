@@ -30,7 +30,7 @@ const Detail = ({users=[]}) =>{
           {/* <h1 style={{color:"white", marginTop:"1%",marginLeft:"45%"}}>結帳台1</h1> */}
           {user ? 
             <Vid style={{marginTop:"5%"}} Vid={user&&user.areas[0].video_id}/>
-            : <h1 style={{color:"white", marginLeft:"10%",marginTop:"5%"}}>賭你看不到我打什麼這麼長一段時間那麼短你怎麼可能看得完...</h1>
+            : <h1 style={{color:"white", marginLeft:"10%",marginTop:"5%"}}>賭你看不到我打什麼這麼長一段時間那麼短你怎麼可能看得完</h1>
                   } 
           <InfoTable setter={setVid}  users = {user} areas={areas}/>
        </Container>
