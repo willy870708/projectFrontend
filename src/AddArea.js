@@ -4,67 +4,97 @@ import mall from "./assets/mall.jpg"
 import station from "./assets/station.jpg"
 import playground from "./assets/playground.jpg"
 const AddArea=()=>{
-return(
+  const [name,setName] = useState();
+  const [image_path,setImagePath] = useState();
+  const Upload = (e) => {
+    e.preventDefault();
+    console.log("Upload...");
+    const data = {"name":name,"image_path":image_path};
+    console.log(data);
+    fetch('http://192.168.0.3:5000/api/users', {
+      method: 'POST',
+      mode:'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }, 
+      body: JSON.stringify(data),
+    });
+  }
+  return(
     <Container>
-        <Table responsive striped bordered hover size="sm" variant="dark" borderless  style={{color:"white",marginTop:"7.5%",marginLeft:"5  %",width:"40rem"}}>
-  <thead>
-    <tr>
-      <td colSpan="3" align="center"><InputGroup size="sm" className="mb-3" style={{width:"300px"}}>
-    <InputGroup.Prepend>
-      <InputGroup.Text id="inputGroup-sizing-sm">名稱:</InputGroup.Text>
-    </InputGroup.Prepend>
-    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" style={{background:"#353a40",color:"white" }}/>
-  </InputGroup>
-  </td>
-    </tr>
-    <tr align="center" style={{fontSize:"12pt"}}>    
-      <th><Form.Check
-          type="radio"
-          label="商場"
-          name="formHorizontalRadios"
-          id="formHorizontalRadios1"
-        /></th>
-      <th><Form.Check
-          type="radio"
-          label="遊樂園"
-          name="formHorizontalRadios"
-          id="formHorizontalRadios1"
-        /></th>
-      <th><Form.Check
-          type="radio"
-          label="車站"
-          name="formHorizontalRadios"
-          id="formHorizontalRadios1"
-        /></th>
-    </tr>
-    <tr align="left" style={{fontSize:"12pt"}}>
-      <th><Image src={mall} style={{height:"200px",height:"200px"}}></Image></th>
-      <th><Image src={playground} style={{height:"200px",height:"200px"}}></Image></th>
-      <th><Image src={station} style={{height:"200px",height:"200px"}}></Image></th>
-    </tr>
-    
-    <td colSpan="3" align="center">
-        <Button style={{color:"white",background:"#00AAAA"}}>submit</Button>
-    </td>
-    {/* <td>
-    </td>  
-    <td><Form.Check
-          type="radio"
-          label="mall"
-          name="formHorizontalRadios"
-          id="formHorizontalRadios1"
-        />
-    </td> 
-    <td><Form.Check
-          type="radio"
-          label="mall"
-          name="formHorizontalRadios"
-          id="formHorizontalRadios1"
-        />
-    </td>    */}
-    </thead>
-    </Table>
+      <Table responsive striped bordered hover 
+              size="sm" variant="dark" borderless  
+              style={{color:"white",marginTop:"7.5%",marginLeft:"5  %",width:"40rem"}}>
+
+        <thead>
+          <tr>
+            <td>
+              {name}
+              {image_path}
+            </td>
+            <td colSpan="3" align="center">
+
+              <InputGroup size="sm" className="mb-3" style={{width:"300px"}}>
+
+                <InputGroup.Prepend>
+                  <InputGroup.Text id="inputGroup-sizing-sm">名稱:</InputGroup.Text>
+                </InputGroup.Prepend>
+
+                <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                        onChange={ (e) => {setName(e.target.value)} }
+                        style={{background:"#353a40",color:"white" }}/>
+              </InputGroup>
+            </td>
+          </tr>
+
+          <tr align="center" style={{fontSize:"12pt"}}>    
+
+            <th>
+              <Form.Check
+                type="radio"
+                label="商場"
+                name="formHorizontalRadios"
+                id="formHorizontalRadios1"
+                onChange={(e) => { setImagePath("mall") }}
+              />
+            </th>
+
+            <th>
+              <Form.Check
+                type="radio"
+                label="遊樂園"
+                name="formHorizontalRadios"
+                id="formHorizontalRadios1"
+                onChange={(e) => { setImagePath("playground")}}
+              />
+            </th>
+
+            <th>
+              <Form.Check
+                type="radio"
+                label="車站"
+                name="formHorizontalRadios"
+                id="formHorizontalRadios1"
+                onChange={(e) => { setImagePath("station") }}
+                
+              />
+            </th>
+
+          </tr>
+
+          <tr align="left" style={{fontSize:"12pt"}}>
+            <th><Image src={mall} style={{height:"200px",height:"200px"}}></Image></th>
+            <th><Image src={playground} style={{height:"200px",height:"200px"}}></Image></th>
+            <th><Image src={station} style={{height:"200px",height:"200px"}}></Image></th>
+          </tr>
+        
+          <td colSpan="3" align="center">
+              <Button style={{color:"white",background:"#00AAAA"}} onClick={Upload}>submit</Button>
+          </td>
+        </thead>
+      </Table>
     </Container>
-)
-}
+    )
+  }
 export default AddArea;
