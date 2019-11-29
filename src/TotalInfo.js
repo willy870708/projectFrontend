@@ -31,10 +31,11 @@ const BigButt=({datas = []}) =>{
     
     datas.map( (data) =>
     
-    <Col xs='12' sm='4' md ='4'>
-      <p style={{color:"white",marginBottom:"-4%",marginLeft:"50%",marginTop:"5%"}}>{data.name}</p>
+    <Col xs='12' sm='4' md ='4' style={{marginTop:"1%",marginBottom:"1%"}}>
+      
       <Link to ={{pathname:path+data.id}}>
         <Image src={showImage(data.image_path)} style={{marginTop:"7.5%",marginLeft:"10%",height:"250px",width:"250px"}} roundedCircle thumbnail/>
+        <p style={{color:"white",marginLeft:"40%",marginTop:"2%"}}>{data.name}</p>
       </Link>
     </Col>
     )

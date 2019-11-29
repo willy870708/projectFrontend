@@ -91,7 +91,7 @@ const InfoTable =({users=[], areas=[],setter}) =>{
     )
 }
 const light =(status)=>{
-  if(status==="gray"){
+  if(status==="grey"){
     return black;
   }
   else if(status==="green"){
