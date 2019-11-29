@@ -34,7 +34,6 @@ const Body =({users}) =>{
                 </Container>
             {/* </Switch> */}
             <br/><br/><br/>
-        
          </Container>
         </div>
     )

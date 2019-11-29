@@ -24,6 +24,7 @@ const AddFacil=(props)=>{
   }
   return(
     <Container>
+      <Form onSubmit={Upload}>
         <Table responsive striped bordered hover size="sm" variant="dark" borderless  style={{color:"white",marginTop:"7.5%",marginLeft:"15%",width:"50rem"}}>
         <thead>
           <tr>
@@ -63,11 +64,12 @@ const AddFacil=(props)=>{
           </tr>
           <tr>
             <td colSpan="3" align="center">
-                <Button style={{color:"white",background:"#00AAAA"}} onClick={Upload}>submit</Button>
+                <Button style={{color:"white",background:"#00AAAA"}} type='submit' >submit</Button>
             </td>
           </tr>
         </thead>
     </Table>
+    </Form>
   </Container>
 )
 }

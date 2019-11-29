@@ -23,12 +23,12 @@ const Detail = ({users=[]}) =>{
         setAreas(temp.areas);
         };
       fetchData();
-    } ,[] );  
+    } ,[]);  
     
   return(
         <Container>
-          <h1 style={{color:"white", marginTop:"1%",marginLeft:"45%"}}>結帳台1</h1>
-            <Vid Vid={vid}/>
+          {/* <h1 style={{color:"white", marginTop:"1%",marginLeft:"45%"}}>結帳台1</h1> */}
+            <Vid style={{marginTop:"5%"}} Vid={vid}/>
             <InfoTable setter={setVid}  users = {user} areas={areas}/>
         </Container>
     )
@@ -74,7 +74,7 @@ const InfoTable =({users=[], areas=[],setter}) =>{
           
           areas.map( (area) => {
             return(
-              <tr align='center' onClick = {setter(area.video_id)}>
+              <tr align='center'>
                 <td>{area.name}</td>
                 <td>{area.number}</td>
                 <td><img src={light(area.status)} style={{height:"1.5rem"}}/></td>
