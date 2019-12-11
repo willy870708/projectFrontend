@@ -10,6 +10,9 @@ const AddFacil=(props)=>{
   const history = creatHistory();
   const Upload = (e) => {
     e.preventDefault();
+    // if (typeof(uid) === undefined){
+    //   uid = 1
+    // }
     const data = {"user_id":uid,"name":name,"capacity":capacity,"source":source};
     fetch('/api/areas', {
       method: 'POST',

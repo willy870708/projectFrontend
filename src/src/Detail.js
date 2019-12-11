@@ -1,20 +1,19 @@
 import React,{useState, useEffect} from 'react';
 import {Table} from 'react-bootstrap'
-import {Container,Image} from 'react-bootstrap'
+import {Container} from 'react-bootstrap'
 import {Link, useParams} from 'react-router-dom'
 import red from './assets/r.png'
 import green from './assets/g.png'
 import yellow from './assets/y.png'
 import black from './assets/b.png'
 import purple from './assets/p.png'
-import icon from './assets/i.png'
 const Detail = ({users=[]}) =>{
   let {id} = useParams();
   const [user,setUser] = useState();
   const [areas,setAreas] = useState([]);
   const [vid,setVid] = useState(id);
   useEffect( ()=> { async function fetchData(){
-    let url = '/api/users/'+id;
+    let url = '/api/users/'+id.toString();
     let temp;
     await fetch(url,{ mode: 'cors' })
         .then(res => res.json())
@@ -26,10 +25,9 @@ const Detail = ({users=[]}) =>{
       fetchData();
       
     } ,[]);  
-
   return(
         <Container>
-          {/* <h1 style={{color:"white", marginTop:"1%",marginLeft:"45%"}}>結帳台1</h1> */}
+          <h1 style={{color:"white", marginTop:"1%",marginLeft:"45%"}}>{user && user.name}</h1>
           {user ? 
             <Vid style={{marginTop:"5%"}} Vid={user&&user.areas[0].video_id}/>
             : <h1 style={{color:"white", marginLeft:"10%",marginTop:"5%"}}>賭你看不到我打什麼這麼長一段時間那麼短你怎麼可能看得完</h1>
@@ -40,11 +38,10 @@ const Detail = ({users=[]}) =>{
 }
 
 const Vid =({Vid}) =>{
-  var url = "http://192.168.50.106:5000/api/video/"+Vid;
-  // var url = "/api/video/"+Vid;
+  var url = "http://localhost:5000/api/video/"+Vid;
   // console.log(url);
     return(
-            <div className="embed-responsive embed-responsive-16by9" style={{marginTop:"1%",marginLeft:"12.5%",width:"900px",height:"650px"}}>
+            <div className="embed-responsive embed-responsive-16by9" style={{marginTop:"1%",marginLeft:"10%",width:"920px",height:"670px"}}>
                 <iframe title="Embeds Page" className="embed-responsive-item" src={url}
                 allowfullscreen></iframe>
             </div>
@@ -73,7 +70,6 @@ const InfoTable =({users=[], areas=[],setter}) =>{
           <th>區域</th>
           <th>人數</th>
           <th>擁擠程度</th>
-          <th>詳細資料</th>
         </tr>
       </thead>
       <tbody>
@@ -85,8 +81,6 @@ const InfoTable =({users=[], areas=[],setter}) =>{
                 <td>{area.name}</td>
                 <td>{area.number}</td>
                 <td><img src={light(area.status)} style={{height:"1.5rem"}}/></td>
-                <td><Butt area={area}/></td>
-                {/* <td>{area.video_id}</td> */}
               </tr>
             )
           })
@@ -113,15 +107,4 @@ const light =(status)=>{
     return purple;
   }
 };
-const Butt=({area}) =>{ 
-  var path = "/FacilDetail/";
-  console.log(Vid)
-  return(
-      <Link to ={{pathname:path+area.video_id}}>
-        <Image src={icon} style={{height:"1.5rem",width:"1.5rem"}}/>
-      </Link>
-  )
-  
-}
-
 export default Detail;

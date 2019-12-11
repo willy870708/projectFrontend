@@ -5,7 +5,6 @@ import TotalInfo from "./TotalInfo"
 import Detail from "./Detail"
 import AddArea from "./AddArea"
 import AddFacil from './AddFacil'
-import FacilDetail from './FacilDetail'
 const Body =({users}) =>{
     const [data,setData] = useState();
     useEffect( ()=> { async function fetchData(){
@@ -31,7 +30,6 @@ const Body =({users}) =>{
                         <Route path='/Detail/:id' component={Detail}/>
                         <Route path='/AddArea' component={AddArea}/>
                         <Route path='/AddFacil/:uid' component={AddFacil}/>
-                        <Route path='/FacilDetail/:uid' component={FacilDetail}/>
                     </Row>
                 </Container>
             {/* </Switch> */}
